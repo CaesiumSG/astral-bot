@@ -10,4 +10,4 @@ enjoy :)
 
 Glitch Dev 2020-2021
 
-(this page will be soon updated)
+(source code coming soon)
