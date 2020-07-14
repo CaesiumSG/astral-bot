@@ -1,29 +1,35 @@
-const { description } = require("./fkick");
-let { version } = require('../config.json')
-let { prefix } = require('../config.json')
+ const { MessageEmbed } = require("discord.js")
+const os = require('os')
+const cpuStat = require("cpu-stat");
 
 module.exports = {
-	
-	name: "info",
-	cooldown: 9,
-    description: "bot information",
-    execute(message) {
-        const Discord = require('discord.js');
+name: "info",
+cooldown: 5,
+description: "get the bot info",
+execute (message, args)  {
+	const client = message.client
 
-// inside a command, event listener, etc.
-const exampleEmbed = new Discord.MessageEmbed()
-	.setColor('#0099ff')
-	.setTitle('Some title')
-	.setAuthor('astral info', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
-	.addFields(
-		{ name: 'bot version', value: `${version}` },
-		{ name: 'total server', value: 'Some value here', inline: true },
-		{ name: 'prefix', value: `${prefix}`, inline: true },
-	)
-	.setTimestamp()
-	.setFooter('astral beta build', 'https://cdn.discordapp.com/avatars/674611545279299598/d0fa76ad86b1966a4a4995b49009bf3d.webp?size=128');
+let days = Math.floor(client.uptime / 86400000);
+      let hours = Math.floor(client.uptime / 3600000) % 24;
+      let minutes = Math.floor(client.uptime / 60000) % 60;
+      let seconds = Math.floor(client.uptime / 1000) % 60;
 
-message.channel.send(exampleEmbed);
+    let { version } = require("discord.js");
+
+
+
+        let embedStats = new MessageEmbed()
+            .setTitle("__**astral info**__")
+            .setColor("RANDOM")
+            .addField("RAM use ", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`, true)
+            .addField("users ", `${client.users.cache.size}`, true)
+            .addField("servers ", `${client.guilds.cache.size}`, true)
+            .addField("uptime ⏲", `${days}d ${hours}h ${minutes}m ${seconds}s`, true)
+            .addField("Discord.js version", `v${version}`, true)
+            .addField("Node version ", `${process.version}`, true)
+            .addField("platform ", `\`\`${os.platform()}\`\``, true)
+            .setFooter("astral")
+
+        message.channel.send(embedStats)
     }
-
-}
+    }

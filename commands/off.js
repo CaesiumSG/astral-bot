@@ -1,4 +1,4 @@
-
+let { botowner } = require('../config.json');
 
 module.exports = {
     name: "off",
@@ -8,7 +8,7 @@ module.exports = {
         const Discord = require('discord.js');
         const { description } = require("./fkick");
 const channel = client.channels.cache.get('706152605574889584');
-        if (message.author.id === '362991657236561923') {
+        if (message.author.id === `${botowner}`){
             message.channel.send(`goodbye ${message.author}`)
             
 // inside a command,g event listener, etc.
@@ -23,7 +23,7 @@ channel.send(exampleEmbed);
 setTimeout(() => {
     process.exit();
 },5)
-    } else message.author.send('only the bot owner can do that')
+    } else message.reply('only the bot owner can do that')
 
 }
 }

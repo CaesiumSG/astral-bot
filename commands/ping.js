@@ -3,6 +3,9 @@ module.exports = {
 	cooldown: 5,
 	description: 'Ping!',
 	execute(message) {
-		message.channel.send('Pong.');
-	},
+		var ping = Date.now() - message.createdTimestamp + " ms";
+		const client = message.client
+		message.channel.send("my ping is `" + `${Date.now() - message.createdTimestamp}` + " ms`");
+
+  }
 };

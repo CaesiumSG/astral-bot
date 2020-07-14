@@ -3,6 +3,7 @@ module.exports = {
     cooldown: 5,
     description: "link to our support server",
     execute(message) {
+    	
         const Discord = require('discord.js')
         const supEmbed = new Discord.MessageEmbed()
    .setColor('#8B0000')
