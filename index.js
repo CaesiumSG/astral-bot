@@ -1,9 +1,22 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
-
+const { prefix, token, version, api } = require('./config.json');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
+
+const chalk = require('chalk')
+
+const normal = chalk.keyword('green')
+
+const name = 'glitchtrap';
+
+
+
+ 
+    // If there is an error, console.error and exit
+    
+
+
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -16,8 +29,8 @@ const cooldowns = new Discord.Collection();
 
 
 
-client.on("ready", async => {
-    console.log(`${client.user.tag} is ready`)
+client.on("ready", async ()  => {
+    console.log(normal(" [ login ]"), `${client.user.tag} is ready`)
 	client.user.setStatus("dnd")
 	const channel = client.channels.cache.get('706152605574889584');
 	const exampleEmbed = new Discord.MessageEmbed()
@@ -30,10 +43,11 @@ channel.send(exampleEmbed);
     setTimeout(() => {
         setInterval(function() {
 			let Statuses = [
-			  "Beta build 0.0.1",
+			 `${version}`,
 			  "version rewrite",
 			  "I can milk you XD",
-			  "a.help for help !"
+			  "a.help for help !",
+			`${client.users.cache.size} users | ${client.guilds.cache.size} servers`
 			]
 			let status = Statuses[Math.floor(Math.random() * Statuses.length)];
 				client.user.setActivity( status , { type : "LISTENING"})}, 7000)
@@ -44,7 +58,6 @@ channel.send(exampleEmbed);
 		  //invisible = hors-ligne
     }, 60)
 });
-
 
 client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -96,7 +109,58 @@ client.on('message', message => {
 	} catch (error) {
 		console.error(error);
 		message.reply('there was an error trying to execute that command!');
+		console.log(' -----------------------------')
 	}
 });
+
+client.on('guildMemberRemove', member => {
+	const guild = member.guild
+if (guild.channels.cache.find(channel => channel.name === 'astral-leaver')) {
+
+guild.channels.cache.find(channel => channel.name === 'astral-leaver') .send(`goodbye ${member}...`)
+	}
+})
+
+client.on('guildMemberAdd', member => {
+	const guild = member.guild
+if (guild.channels.cache.find(channel => channel.name === 'astral-joiner')) {
+
+guild.channels.cache.find(channel => channel.name === 'astral-joiner') .send(`welcome to ${member.guild.name} ${member} !`)
+	}
+})
+
+client.on('message', message => {
+	
+	if(message.author.bot) return;
+	
+	if(message.content.includes(`@everyone`) ) return
+	
+	if(message.content.includes(`@here`) ) return
+	
+	
+	const guild = message.guild
+if (guild.channels.cache.find(channel => channel.name === 'chat-logs')) {
+
+const channel = guild.channels.cache.find(channel => channel.name === 'chat-logs')
+
+let MSG = message.content.split(" ").join(" ");
+
+if(!MSG) return
+
+if(MSG.length > 999) return
+const messageEmbes = new Discord.MessageEmbed()
+    .setColor('RANDOM')
+  .setAuthor('new message send')
+.addField("author", `${message.author.username}`, true)
+.addField("channel", `<#${message.channel.id}>`, false)
+.addField("message", `${MSG}`, false)
+.setTimestamp()
+.setFooter('chat logs', 'https://cdn.discordapp.com/attachments/675371978386833428/704717055877972038/4a425077ed2809403254ffec40454752.png')
+
+
+	channel.send(messageEmbes)
+	}
+})
+
 
 client.login(token)
