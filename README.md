@@ -18,7 +18,7 @@
  
  ## suggestion
  
-for the suggestion just send ur idea ¯\_(ツ)_/¯
+for the suggestion fork the project with ur command file
 
 + [discord server](https://discord.com/invite/NCwH84h)  
 + [invite our bot](https://discord.com/oauth2/authorize?client_id=674611545279299598&permissions=1544551671&scope=bot)
