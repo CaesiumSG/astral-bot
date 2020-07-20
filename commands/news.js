@@ -22,6 +22,7 @@ const channel = client.channels.cache.get('706152508879536208');
     .setFooter("astral news");
  
 channel.send(embedhug);
+channel.send("@everyone");
  
     message.delete();
  

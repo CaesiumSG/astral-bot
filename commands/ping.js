@@ -5,7 +5,7 @@ module.exports = {
 	execute(message) {
 		var ping = Date.now() - message.createdTimestamp + " ms";
 		const client = message.client
-		message.channel.send("my ping is `" + `${Date.now() - message.createdTimestamp}` + " ms`");
+		message.channel.send("pong !`" + `${Date.now() - message.createdTimestamp}` + " ms`");
 
   }
 };

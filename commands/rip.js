@@ -14,7 +14,7 @@ const { execute } = require("./fkick");
     let embedhug = new MessageEmbed()
     .setColor("RANDOM")
     .setDescription(`${mentionedUser} is ded`)
-    .setImage("https://tenor.com/bioro.gif")
+    .setImage("https://tenor.com/biH4f.gif")
     .setTimestamp()
     .setFooter("ded");
  

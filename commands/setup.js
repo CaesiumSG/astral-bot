@@ -17,6 +17,11 @@ module.exports = {
     message.channel.send("astral-leaver created")
     }else {message.channel.send("the channel ``astral-leaver`` is already here")
     }
+    if (!guild.channels.cache.find(channel => channel.name === 'chat-logs')) {
+    	message.guild.channels.create("chat-logs", {type: 'text'})
+    message.channel.send("chat-logs created")
+    }else {message.channel.send("the channel ``astral-leaver`` is already here")
+    }
     }else return message.reply("you need the permission ``MANAGE_GUILD`` for this command")
     }
     }

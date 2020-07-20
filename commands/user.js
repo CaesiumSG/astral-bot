@@ -13,7 +13,7 @@ module.exports = {
 		{ name: 'name', value: `${message.author.username}`,  inline: true },
 		{ name: 'id', value: `${message.author.id}`,  inline: true },
 		{name: 'status', value: `${message.author.presence.status}`, inline: false},
-		{name: 'current activity', value: `${message.author.presence.activity}`, inline: false}
+		{name: 'current activity', value: `trying to fix....`, inline: false}
 		
 	)
             .setTimestamp()      
@@ -26,7 +26,7 @@ module.exports = {
 		{ name: 'name', value: `${user}`,  inline: true },
 		{ name: 'id', value: `${user.id}`,  inline: true },
 		{name: 'status', value: `${user.presence.status}`, inline: false},
-		{name: 'current activity', value: `${user.presence.activity}`, inline: false}
+		{name: 'current activity', value: `trying to fix....`, inline: false}
 	)
             .setTimestamp()      
                message.channel.send(exampleEmbed2)

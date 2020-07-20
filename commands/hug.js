@@ -28,9 +28,9 @@ const answers = [
     .setImage(answer)
     .setTimestamp()
     .setFooter("Hugs time uwu");
+   
  
     message.channel.send(embedhug);
- 
-    message.delete();
+
 }
 }
