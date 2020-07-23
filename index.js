@@ -7,13 +7,6 @@ client.commands = new Discord.Collection();
 const chalk = require('chalk')
 
 const normal = chalk.keyword('green')
-
-const name = 'glitchtrap';
-
-
-
- 
-    // If there is an error, console.error and exit
     
 
 
@@ -70,8 +63,8 @@ client.on('message', message => {
 
 	if (!command) return;
 
-	if (command.guildOnly && message.channel.type !== 'text') {
-		return message.reply('I can\'t execute that command inside DMs!');
+	if (command.name && message.channel.type !== 'text') {
+		return
 	}
 
 	if (command.args && !args.length) {
@@ -130,6 +123,7 @@ guild.channels.cache.find(channel => channel.name === 'astral-joiner') .send(`we
 })
 
 client.on('message', message => {
+   if (message.channel.type !== 'text') return
 	
 	if(message.author.bot) return;
 	
@@ -143,8 +137,8 @@ if (guild.channels.cache.find(channel => channel.name === 'chat-logs')) {
 
 const channel = guild.channels.cache.find(channel => channel.name === 'chat-logs')
 
-let MSG = message.content.split(" ").join(" ");
 
+let MSG = message.content.split(" ").join(" ");
 if(!MSG) return
 
 if(MSG.length > 999) return
@@ -161,6 +155,5 @@ const messageEmbes = new Discord.MessageEmbed()
 	channel.send(messageEmbes)
 	}
 })
-
 
 client.login(token)
