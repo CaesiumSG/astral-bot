@@ -1,8 +1,11 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token, version, api } = require('./config.json');
+const { prefix, token, version, api, botapi } = require('./config.json');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
+const DBL = require('dblapi.js')
+const dbl = new DBL(botapi, client)
+
 
 const chalk = require('chalk')
 
@@ -36,11 +39,9 @@ channel.send(exampleEmbed);
     setTimeout(() => {
         setInterval(function() {
 			let Statuses = [
-			 `${version}`,
-			  "version rewrite",
-			  "I can milk you XD",
-			  "a.help for help !",
-			`${client.users.cache.size} users | ${client.guilds.cache.size} servers`
+			  `${prefix}help for help !`,
+			`${client.users.cache.size} users | ${client.guilds.cache.size} servers`,
+			"now on top.gg !"
 			]
 			let status = Statuses[Math.floor(Math.random() * Statuses.length)];
 				client.user.setActivity( status , { type : "LISTENING"})}, 7000)
@@ -101,7 +102,7 @@ client.on('message', message => {
 		command.execute(message, args);
 	} catch (error) {
 		console.error(error);
-		message.reply('there was an error trying to execute that command!');
+		message.reply('<:error:736705408349110374> there was an error trying to execute that command!');
 		console.log(' -----------------------------')
 	}
 });
@@ -123,6 +124,7 @@ guild.channels.cache.find(channel => channel.name === 'astral-joiner') .send(`we
 })
 
 client.on('message', message => {
+  
    if (message.channel.type !== 'text') return
 	
 	if(message.author.bot) return;
@@ -149,11 +151,20 @@ const messageEmbes = new Discord.MessageEmbed()
 .addField("channel", `<#${message.channel.id}>`, false)
 .addField("message", `${MSG}`, false)
 .setTimestamp()
-.setFooter('chat logs', 'https://cdn.discordapp.com/attachments/675371978386833428/704717055877972038/4a425077ed2809403254ffec40454752.png')
+.setFooter('chat logs', guild.iconURL())
 
 
 	channel.send(messageEmbes)
 	}
+})
+
+dbl.on('error', e => {
+   console.log(`error with dbl api: ${e}`)
+})
+
+dbl.on('vote', vote => {
+   const channel = client.channels.cache.get('706157221825871932');
+   channel.send(`${vote.user} just voted thx`)
 })
 
 client.login(token)
