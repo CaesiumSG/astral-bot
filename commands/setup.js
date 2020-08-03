@@ -8,17 +8,53 @@ module.exports = {
   }
     if (message.member.hasPermission("MANAGE_GUILD")) {
     	if (!guild.channels.cache.find(channel => channel.name === 'astral-joiner')) {
-    	message.guild.channels.create("astral-joiner", {type: 'text'})
+    	    	guild.channels.create('astral-joiner', {
+    type: 'text',
+    permissionOverwrites: [
+        {
+            id: message.guild.id,
+            deny: ['SEND_MESSAGES'],
+        },
+        {
+            id: message.guild.me.id,
+            allow: ['SEND_MESSAGES'],
+        },
+    ],
+});
     message.channel.send("astral-joiner created")
     }else message.channel.send("the channel ``astral-joiner`` is already here")
     
     if (!guild.channels.cache.find(channel => channel.name === 'astral-leaver')) {
-    	message.guild.channels.create("astral-leaver", {type: 'text'})
+    	guild.channels.create('astral-leaver', {
+    type: 'text',
+    permissionOverwrites: [
+        {
+            id: message.guild.id,
+            deny: ['SEND_MESSAGES'],
+        },
+        {
+            id: message.guild.me.id,
+            allow: ['SEND_MESSAGES'],
+        },
+    ],
+});
     message.channel.send("astral-leaver created")
     }else {message.channel.send("the channel ``astral-leaver`` is already here")
     }
     if (!guild.channels.cache.find(channel => channel.name === 'chat-logs')) {
-    	message.guild.channels.create("chat-logs", {type: 'text'})
+    	guild.channels.create('chat-logs', {
+    type: 'text',
+    permissionOverwrites: [
+        {
+            id: message.guild.id,
+            deny: ['SEND_MESSAGES'],
+        },
+        {
+            id: message.guild.me.id,
+            allow: ['SEND_MESSAGES'],
+        },
+    ],
+});
     message.channel.send("chat-logs created")
     }else {message.channel.send("the channel ``astral-leaver`` is already here")
     }

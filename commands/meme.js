@@ -5,6 +5,7 @@ module.exports = {
     name: "meme",
     cooldown: 3,
     description: "watch some good spicy meme",
+    aliases: "memes",
     async execute(message) {
        const red = ["DaniDev", "dankmeme", "meme", "memes", "DaniDev", "dankmeme","meme", "memes", "JoJoMemes", "JoJoMemes","JoJoMemes","JoJoMemes", "PewdiepieSubmissions", "PewdiepieSubmissions",  "ShitPostCrusaders", "ShitPostCrusaders",  ]
 

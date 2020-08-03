@@ -3,9 +3,11 @@ module.exports = {
 	cooldown: 4,
 	description: "user info",
 	execute(message) {
+	   const guild = message.guild
 		const Discord = require('discord.js')
 		let user = message.mentions.members.first();
 		if (!user) {
+		   
             const exampleEmbed = new Discord.MessageEmbed()
             .setTitle('user info')
             .setColor('RANDOM')
@@ -13,7 +15,7 @@ module.exports = {
 		{ name: 'name', value: `${message.author.username}`,  inline: true },
 		{ name: 'id', value: `${message.author.id}`,  inline: true },
 		{name: 'status', value: `${message.author.presence.status}`, inline: false},
-		{name: 'current activity', value: `trying to fix....`, inline: false}
+		{name: 'current activity', value: `trying to fix.... `, inline: false}
 		
 	)
             .setTimestamp()      

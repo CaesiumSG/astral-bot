@@ -17,8 +17,9 @@ const answers = [
 ]
  
 
-    if (!args[0]) return message.reply("you need to tag a user to hug.");
-    let mentionedUser = message.mentions.users.first();
+        let mentionedUser = message.mentions.users.first();
+ if (!mentionedUser) return message.reply("you need to tag a user to hug.");
+
     const answer = answers[Math.floor(Math.random() * answers.length)];
  
     let embedhug = new MessageEmbed()
